@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check if a string is palindrome</title>
+</head>
+<body>
+    <h1>Check if a string is palindrome</h1>
+
+    <form id="palindromeForm">
+        <label for="userString">Enter a string: </label>
+        <input type="text"  id="userString">
+        <button type="submit">Check if palindrome</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+
+        function isPalindrome(str){
+            let j = str.length - 1;
+            for(let i = 0; i < j/2; i++){
+                if(str[i].toLowerCase() !== str[j-i].toLowerCase()){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        document.getElementById("palindromeForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const input = document.getElementById("userString").value;
+            const res = isPalindrome(input);
+
+            if(res){
+                document.getElementById("output").innerHTML = `${input} IS a palindrome`;
+            } else{
+                document.getElementById("output").innerHTML = `${input} IS NOT a palindrome`;
+            }
+
+        })
+    </script>
+    
+</body>
+</html>
