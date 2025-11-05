@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="head1" onmouseover="changeColor1()" onmouseout="changeColor2()">Mouse Events</h1>
+    <h3>JS program to change color of a webpage using mouse over event</h3>
+    <p>We are using mouse over and mouse out event to change background color</p>
+
+    <script>
+        function changeColor1(){
+            document.body.style.backgroundColor = "red";
+        }
+
+        function changeColor2(){
+            document.body.style.backgroundColor = "yellow";
+        }
+    </script>
+    
+</body>
+</html>
