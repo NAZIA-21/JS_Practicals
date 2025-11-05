@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replace a word/character in a string</title>
+</head>
+<body>
+    <h1>Replace a word/character in a string</h1>
+
+    <form id="replaceForm">
+        <label for="userText">Enter a string: </label>
+        <input type="text" id="userText" required><br><br>
+
+        <label for="oldChar">Character/Word to replace: </label>
+        <input type="text" id="oldChar" required><br><br>
+
+        <label for="newChar">Replace with: </label>
+        <input type="text" id="newChar" required><br><br>
+
+        <button type="submit">Replace</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        document.getElementById("replaceForm").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const text = document.getElementById("userText").value;
+            const oldChar = document.getElementById("oldChar").value;
+            const newChar = document.getElementById("newChar").value;
+
+            const regex = new RegExp(oldChar, "g");
+            const newText = text.replace(regex, newChar);
+
+            document.getElementById("output").innerHTML = "Original text: " + text + "<br>Modified text: " + newText;
+        });
+    </script>
+    
+</body>
+</html>
