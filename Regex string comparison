@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Compare Strings Using RegEx</title>
+</head>
+<body>
+  <h2>Compare Two Strings Using RegEx</h2>
+
+  <form id="regexForm">
+    <label for="string1">Enter first string:</label><br>
+    <input type="text" id="string1" required><br><br>
+
+    <label for="string2">Enter second string:</label><br>
+    <input type="text" id="string2" required><br><br>
+
+    <button type="submit">Compare</button>
+  </form>
+
+  <p id="output"></p>
+
+  <script>
+    document.getElementById("regexForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const str1 = document.getElementById("string1").value;
+      const str2 = document.getElementById("string2").value;
+
+      // create regex with anchors for exact match, case-insensitive
+      const pattern = new RegExp("^" + str1 + "$", "i");
+      const result = pattern.test(str2);
+
+      if(result) {
+        document.getElementById("output").innerHTML =
+          "The strings are similar";
+      } else {
+        document.getElementById("output").innerHTML =
+          "The strings are not similar";
+      }
+    });
+  </script>
+</body>
+</html>
