@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <h2>Sign Up Form</h2>
+    <form onsubmit="return validateForm()">
+
+        <label for="fname">First Name: </label>
+        <input type="text" id="fname" placeholder="Enter first name">
+        <span class="error" id="fnameError"></span>
+        <br><br>
+
+        <label for="lname">Last Name: </label>
+        <input type="text" id="lname" placeholder="Enter last name">
+        <span class="error" id="lnameError"></span>
+        <br><br>
+
+        <label for="email">Email id: </label>
+        <input type="text" id="email" placeholder="Enter email id">
+        <span class="error" id="emailError"></span>
+        <br><br>
+
+        <label for="password">Password: </label>
+        <input type="text" id="password" placeholder="Enter password">
+        <span class="error" id="passwordError"></span>
+        <br><br>
+
+        <label for="gender">Gender: </label>
+        <input type="radio" name="gender" value="male">Male
+        <input type="radio" name="gender" value="female">Female
+        <input type="radio" name="gender" value="others">Others
+        <span class="error" id="genderError"></span>
+        <br><br>
+
+        <label for="mobile">Mobile number: </label>
+        <input type="text" id="mobile" placeholder="Enter mobile number">
+        <span class="error" id="mobileError"></span>
+        <br><br>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+    function validateForm() {
+        document.querySelectorAll('.error').forEach(e => e.textContent = "");
+        let isValid = true;
+
+        const fname = document.getElementById("fname").value.trim();
+        if(fname === "" || !/^[A-Za-z]+$/.test(fname)) {
+            document.getElementById("fnameError").textContent = "Please enter a valid first name.";
+            isValid = false;
+        }
+
+        const lname = document.getElementById("lname").value.trim();
+        if(lname === "" || !/^[A-Za-z]+$/.test(lname)) {
+            document.getElementById("lnameError").textContent = "Please enter a valid last name.";
+            isValid = false;
+        }
+
+        const email = document.getElementById("email").value.trim();
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if(email === "" || !emailPattern.test(email)) {
+            document.getElementById("emailError").textContent = "Please enter a valid email.";
+            isValid = false;
+        }
+
+        const password = document.getElementById("password").value.trim();
+        const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*\W).{8,16}$/;
+
+        if(!passwordPattern.test(password)) {
+            document.getElementById("passwordError").textContent =
+            "Password must be 8-16 characters and include uppercase, lowercase, number, and special character.";
+            isValid = false;
+        }
+
+        const gender = document.querySelector('input[name="gender"]:checked');
+        if(!gender) {
+            document.getElementById("genderError").textContent = "Please select a gender.";
+            isValid = false;
+        }
+
+        const mobile = document.getElementById("mobile").value.trim();
+        if(!/^\d{10}$/.test(mobile)) {
+            document.getElementById("mobileError").textContent = "Enter a valid 10-digit mobile number.";
+            isValid = false;
+        }
+
+        // If all fields are valid, redirect to a new page
+        if(isValid) {
+            window.location.href = "formSuccess.html"; // replace with your page
+        }
+
+        return false; // prevent form submission
+        }
+    </script>
+</body>
+</html>
