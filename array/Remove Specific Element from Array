@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remove Array Element</title>
+    </head>
+    <body>
+    <h2>Remove Specific Element from Array</h2>
+
+    <form id="arrayForm">
+        <label for="arrayInput">Enter array elements (comma separated):</label><br>
+        <input type="text" id="arrayInput" placeholder="e.g., 2,5,9,6" required><br><br>
+
+        <label for="removeNumber">Enter number to remove:</label><br>
+        <input type="number" id="removeNumber" required><br><br>
+
+        <button type="submit">Remove Element</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        function removeArrayElement(array, n) {
+        const index = array.indexOf(n);
+        if (index > -1) {
+            array.splice(index, 1);
+        }
+        return array;
+        }
+
+        document.getElementById("arrayForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const arrayStr = document.getElementById("arrayInput").value;
+        const removeNum = parseInt(document.getElementById("removeNumber").value);
+
+        const array = arrayStr.split(',').map(num => parseInt(num.trim()));
+
+        const newArray = removeArrayElement(array, removeNum);
+
+        document.getElementById("output").innerHTML =
+            "Updated Array: [" + newArray.join(", ") + "]";
+        });
+    </script>
+</body>
+</html>
