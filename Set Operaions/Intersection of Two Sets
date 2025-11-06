@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intersection of Sets</title>
+</head>
+<body>
+    <h2>Intersection of Two Sets</h2>
+
+    <form id="intersectionForm">
+        <label for="setAInput">Enter elements of Set A (comma separated):</label><br>
+        <input type="text" id="setAInput" placeholder="e.g., apple,mango,orange" required><br><br>
+
+        <label for="setBInput">Enter elements of Set B (comma separated):</label><br>
+        <input type="text" id="setBInput" placeholder="e.g., grapes,apple,banana" required><br><br>
+
+        <button type="submit">Perform Intersection</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        function intersection(setA, setB) {
+        let intersectionSet = new Set();
+        for (let i of setB) {
+            if (setA.has(i)) {
+            intersectionSet.add(i);
+            }
+        }
+        return intersectionSet;
+        }
+
+        document.getElementById("intersectionForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const setA = new Set(document.getElementById("setAInput").value.split(',').map(item => item.trim()));
+        const setB = new Set(document.getElementById("setBInput").value.split(',').map(item => item.trim()));
+
+        const resultSet = intersection(setA, setB);
+
+        document.getElementById("output").textContent = "Intersection of Set A and Set B: [" + Array.from(resultSet).join(", ") + "]";
+        });
+    </script>
+</body>
+</html>
