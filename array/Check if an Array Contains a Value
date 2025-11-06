@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Array for Value</title>
+    </head>
+    <body>
+    <h2>Check if an Array Contains a Value</h2>
+
+    <form id="checkForm">
+        <label for="arrayInput">Enter array elements (comma separated):</label><br>
+        <input type="text" id="arrayInput" placeholder="e.g., you,will,learn,javascript" required><br><br>
+
+        <label for="valueInput">Enter value to check:</label><br>
+        <input type="text" id="valueInput" required><br><br>
+
+        <button type="submit">Check</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        document.getElementById("checkForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const arrayStr = document.getElementById("arrayInput").value;
+        const checkValue = document.getElementById("valueInput").value;
+
+        const array = arrayStr.split(',').map(item => item.trim());
+
+        const hasValue = array.includes(checkValue);
+
+        document.getElementById("output").innerHTML =
+            hasValue ? `Array contains "${checkValue}" ` : `Array does not contain "${checkValue}".`;
+        });
+    </script>
+</body>
+</html>
