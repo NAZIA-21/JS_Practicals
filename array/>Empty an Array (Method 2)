@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Empty Array</title>
+</head>
+<body>
+    <h2>Empty an Array (Method 2)</h2>
+
+    <form id="emptyForm">
+        <label for="arrayInput">Enter array elements (comma separated):</label><br>
+        <input type="text" id="arrayInput" placeholder="e.g., 1,2,3,4" required><br><br>
+        <button type="submit">Empty Array</button>
+    </form>
+
+    <p>Original Array: <span id="originalArray"></span></p>
+    <p>Array after emptying: <span id="emptyArrayOutput"></span></p>
+
+    <script>
+        function emptyArray(arr) {
+        arr.splice(0, arr.length);
+        return arr;
+        }
+
+        document.getElementById("emptyForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const arrayStr = document.getElementById("arrayInput").value;
+        let array = arrayStr.split(',').map(num => num.trim());
+
+        document.getElementById("originalArray").textContent = "[" + array.join(", ") + "]";
+
+        const result = emptyArray(array);
+        document.getElementById("emptyArrayOutput").textContent = "[" + result.join(", ") + "]";
+        });
+    </script>
+</body>
+</html>
