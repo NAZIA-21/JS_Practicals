@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Symmetric Difference of Sets</title>
+</head>
+<body>
+    <h2>Symmetric Difference of Two Sets</h2>
+
+    <form id="differenceForm">
+        <label for="setAInput">Enter elements of Set A (comma separated):</label><br>
+        <input type="text" id="setAInput" placeholder="e.g., apple,mango,orange" required><br><br>
+
+        <label for="setBInput">Enter elements of Set B (comma separated):</label><br>
+        <input type="text" id="setBInput" placeholder="e.g., grapes,apple,banana" required><br><br>
+
+        <button type="submit">Perform Symmetric Difference</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+        function symmetricDifference(setA, setB) {
+        let diffSet = new Set();
+
+        for (let elem of setA) {
+            if (!setB.has(elem)) diffSet.add(elem);
+        }
+
+        // elements in B but not in A
+        for (let elem of setB) {
+            if (!setA.has(elem)) diffSet.add(elem);
+        }
+
+        return diffSet;
+        }
+
+        document.getElementById("differenceForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const setA = new Set(document.getElementById("setAInput").value.split(',').map(item => item.trim()));
+        const setB = new Set(document.getElementById("setBInput").value.split(',').map(item => item.trim()));
+
+        const resultSet = symmetricDifference(setA, setB);
+
+        document.getElementById("output").textContent = "Symmetric Difference (elements in A or B but not both): [" 
+            + Array.from(resultSet).join(", ") + "]";
+        });
+    </script>
+</body>
+</html>
